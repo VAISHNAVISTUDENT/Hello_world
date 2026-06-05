@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brew & Code — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+ :root {
+    --espresso: #4b2e24;
+    --roast: #7a4a3a;
+    --caramel: #d88a7c;
+    --latte: #f2c7b6;
+    --cream: #f8e7d8;
+    --milk: #fff6ee;
+    --steam: #e9d7cc;
+    --gold: #d98f70;
+    --text-dark: #4b2e24;
+    --text-mid: #8a5d4d;
+    --text-light: #c79b8a;
+}
+/* Text selection highlight */
+::selection {
+    background-color: var(--caramel); /* selected background */
+    color: var(--milk); /* selected text */
+}
+
+::-moz-selection {
+    background-color: var(--caramel);
+    color: var(--milk);
+}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--milk);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAVBAR ── */
+nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    padding: 1rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.164);
+    backdrop-filter: blur(18px) saturate(160%);
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 32px rgba(75, 46, 36, 0.12);
+}
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--latte);
+    letter-spacing: 0.02em;
+  }
+  .nav-logo span { color: var(--caramel); font-style: italic; }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: rgba(245,237,227,0.85);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--caramel);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--latte); }
+  .nav-links a:hover::after { width: 100%; }
+
+  /* ── HERO ── */
+  #hero {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(26,15,10,0.55) 0%, rgba(61,31,16,0.4) 60%, rgba(26,15,10,0.8) 100%),
+      url('Spring Coffee Jazz Music 🌸 Morning Jazz Lofi Music for Study_ Chill_ Relax Coffee Shop Ambience.jpg') center/cover no-repeat;
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 70%, rgba(200,121,65,0.12) 0%, transparent 60%);
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 2rem;
+  }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--caramel);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.3s forwards;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1.0;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.5s forwards;
+  }
+  .hero-title em { color: var(--latte); font-style: italic; }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: rgba(245,237,227,0.7);
+    max-width: 480px;
+    margin: 0 auto 3rem;
+    font-weight: 300;
+    line-height: 1.7;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.7s forwards;
+  }
+  .hero-cta {
+    display: inline-block;
+    padding: 0.9rem 2.5rem;
+    background: var(--caramel);
+    color: var(--espresso);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.3s;
+    opacity: 0;
+    animation: fadeUp 0.9s 0.9s forwards;
+  }
+  .hero-cta:hover { background: var(--latte); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,121,65,0.35); }
+  .scroll-hint {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(245,237,227,0.5);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    animation: bounce 2s infinite;
+  }
+  .scroll-hint::after {
+    content: '';
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--caramel), transparent);
+  }
+
+  /* ── SECTIONS COMMON ── */
+  section { padding: 7rem 4rem; }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--caramel);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 900;
+    color: var(--espresso);
+    line-height: 1.1;
+    margin-bottom: 2rem;
+  }
+
+  /* ── ABOUT ── */
+  #about {
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6rem;
+    min-height: 100vh;
+  }
+  .about-text { flex: 1; max-width: 480px; }
+  .about-text p {
+    color: var(--text-mid);
+    line-height: 1.85;
+    font-size: 1.05rem;
+    margin-bottom: 1.25rem;
+  }
+  .about-accent {
+    display: inline-block;
+    width: 48px;
+    height: 3px;
+    background: var(--caramel);
+    margin-bottom: 2rem;
+  }
+  .about-tv-wrap {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* ── TV (coffee-reskinned) ── */
+  .main_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28em;
+    height: 28em;
+    position: relative;
+  }
+  .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 5em;
+  }
+  .antenna {
+    width: 5em; height: 5em;
+    border-radius: 50%;
+    border: 2px solid var(--espresso);
+    background-color: var(--caramel);
+    margin-bottom: -6em;
+    z-index: -1;
+  }
+  .antenna_shadow {
+    position: absolute;
+    background-color: transparent;
+    width: 50px; height: 56px;
+    margin-left: 1.68em;
+    border-radius: 45%;
+    transform: rotate(140deg);
+    border: 4px solid transparent;
+    box-shadow: inset 0px 16px #8b5e1a, inset 0px 16px 1px 1px #8b5e1a;
+  }
+  .antenna::after {
+    content: "";
+    position: absolute;
+    margin-top: -9.4em; margin-left: 0.4em;
+    transform: rotate(-25deg);
+    width: 1em; height: 0.5em;
+    border-radius: 50%;
+    background-color: var(--latte);
+  }
+  .antenna::before {
+    content: "";
+    position: absolute;
+    margin-top: 0.2em; margin-left: 1.25em;
+    transform: rotate(-20deg);
+    width: 1.5em; height: 0.8em;
+    border-radius: 50%;
+    background-color: var(--latte);
+  }
+  .a1 {
+    position: relative;
+    top: -102%; left: -130%;
+    width: 12em; height: 5.5em;
+    border-radius: 50px;
+    background-image: linear-gradient(var(--espresso),var(--espresso),var(--roast),var(--roast),var(--espresso));
+    transform: rotate(-29deg);
+    clip-path: polygon(50% 0%, 49% 100%, 52% 100%);
+  }
+  .a1d {
+    position: relative;
+    top: -211%; left: -35%;
+    transform: rotate(45deg);
+    width: 0.5em; height: 0.5em;
+    border-radius: 50%;
+    border: 2px solid var(--espresso);
+    background-color: #979797;
+    z-index: 99;
+  }
+  .a2 {
+    position: relative;
+    top: -210%; left: -10%;
+    width: 12em; height: 4em;
+    border-radius: 50px;
+    background-image: linear-gradient(var(--espresso),var(--espresso),var(--roast),var(--roast),var(--espresso));
+    margin-right: 5em;
+    clip-path: polygon(47% 0,47% 0,34% 34%,54% 25%,32% 100%,29% 96%,49% 32%,30% 38%);
+    transform: rotate(-8deg);
+  }
+  .a2d {
+    position: relative;
+    top: -294%; left: 94%;
+    width: 0.5em; height: 0.5em;
+    border-radius: 50%;
+    border: 2px solid var(--espresso);
+    background-color: #979797;
+    z-index: 99;
+  }
+  .notfound_text {
+    background-color: var(--espresso);
+    padding-left: 0.3em; padding-right: 0.3em;
+    font-size: 0.7em;
+    color: var(--latte);
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    z-index: 10;
+    font-family: 'DM Mono', monospace;
+  }
+  .tv {
+    width: 17em; height: 9em;
+    margin-top: 3em;
+    border-radius: 15px;
+    background-color: var(--roast);
+    display: flex;
+    justify-content: center;
+    border: 2px solid var(--espresso);
+    box-shadow: inset 0.2em 0.2em var(--caramel);
+  }
+  .tv::after {
+    content: "";
+    position: absolute;
+    width: 17em; height: 9em;
+    border-radius: 15px;
+    background: repeating-radial-gradient(var(--roast) 0 0.0001%,#00000070 0 0.0002%) 50% 0/2500px 2500px,
+                repeating-conic-gradient(var(--roast) 0 0.0001%,#00000070 0 0.0002%) 60% 60%/2500px 2500px;
+    background-blend-mode: difference;
+    opacity: 0.07;
+  }
+  .curve_svg { position: absolute; margin-top: 0.25em; margin-left: -0.25em; height: 12px; width: 12px; }
+  .display_div {
+    display: flex;
+    align-items: center; align-self: center; justify-content: center;
+    border-radius: 15px;
+    box-shadow: 3.5px 3.5px 0px var(--caramel);
+  }
+  .screen_out { width: auto; height: auto; border-radius: 10px; }
+  .screen_out1 {
+    width: 11em; height: 7.75em;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 10px;
+  }
+  .screen {
+    width: 13em; height: 7.85em;
+    font-family: 'DM Mono', monospace;
+    border: 2px solid var(--espresso);
+    background: repeating-radial-gradient(#1a0f0a 0 0.0001%,#c87941 0 0.0002%) 50% 0/2500px 2500px,
+                repeating-conic-gradient(#1a0f0a 0 0.0001%,#c87941 0 0.0002%) 60% 60%/2500px 2500px;
+    background-blend-mode: difference;
+    animation: tvStatic 0.2s infinite alternate;
+    border-radius: 10px;
+    z-index: 99;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: bold;
+    color: var(--latte);
+    letter-spacing: 0.12em;
+    text-align: center;
+  }
+  @keyframes tvStatic {
+    100% { background-position: 50% 0, 60% 50%; }
+  }
+  .lines {
+    display: flex; column-gap: 0.1em;
+    align-self: flex-end;
+  }
+  .line1,.line3 {
+    width: 2px; height: 0.5em;
+    background-color: var(--espresso);
+    border-radius: 25px 25px 0 0;
+    margin-top: 0.5em;
+  }
+  .line2 {
+    flex-grow: 1; width: 2px; height: 1em;
+    background-color: var(--espresso);
+    border-radius: 25px 25px 0 0;
+  }
+  .buttons_div {
+    width: 4.25em; align-self: center; height: 8em;
+    background-color: var(--caramel);
+    border: 2px solid var(--espresso);
+    padding: 0.6em;
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; row-gap: 0.75em;
+    box-shadow: 3px 3px 0px var(--caramel);
+  }
+  .b1 {
+    width: 1.65em; height: 1.65em;
+    border-radius: 50%;
+    background-color: var(--roast);
+    border: 2px solid var(--espresso);
+    box-shadow: inset 2px 2px 1px var(--latte), -2px 0px var(--espresso), -2px 0px 0px 1px var(--espresso);
+  }
+  .b1::before {
+    content: ""; position: absolute;
+    margin-top: 1em; margin-left: 0.5em;
+    transform: rotate(47deg);
+    border-radius: 5px;
+    width: 0.1em; height: 0.4em;
+    background-color: #000;
+  }
+  .b1::after {
+    content: ""; position: absolute;
+    margin-top: 0.9em; margin-left: 0.8em;
+    transform: rotate(47deg);
+    border-radius: 5px;
+    width: 0.1em; height: 0.55em;
+    background-color: #000;
+  }
+  .b1 div {
+    content: ""; position: absolute;
+    margin-top: -0.1em; margin-left: 0.65em;
+    transform: rotate(45deg);
+    width: 0.15em; height: 1.5em;
+    background-color: #000;
+  }
+  .b2 {
+    width: 1.65em; height: 1.65em;
+    border-radius: 50%;
+    background-color: var(--roast);
+    border: 2px solid var(--espresso);
+    box-shadow: inset 2px 2px 1px var(--latte), -2px 0px var(--espresso), -2px 0px 0px 1px var(--espresso);
+  }
+  .b2::before {
+    content: ""; position: absolute;
+    margin-top: 1.05em; margin-left: 0.8em;
+    transform: rotate(-45deg);
+    border-radius: 5px;
+    width: 0.15em; height: 0.4em;
+    background-color: #000;
+  }
+  .b2::after {
+    content: ""; position: absolute;
+    margin-top: -0.1em; margin-left: 0.65em;
+    transform: rotate(-45deg);
+    width: 0.15em; height: 1.5em;
+    background-color: #000;
+  }
+  .speakers { display: flex; flex-direction: column; row-gap: 0.5em; }
+  .speakers .g1 { display: flex; column-gap: 0.25em; }
+  .speakers .g1 .g11,.g12,.g13 {
+    width: 0.65em; height: 0.65em;
+    border-radius: 50%;
+    background-color: var(--roast);
+    border: 2px solid var(--espresso);
+    box-shadow: inset 1.25px 1.25px 1px var(--latte);
+  }
+  .speakers .g { width: auto; height: 2px; background-color: var(--espresso); }
+  .bottom {
+    width: 100%; height: auto;
+    display: flex; align-items: center; justify-content: center;
+    column-gap: 8.7em;
+  }
+  .base1,.base2 {
+    height: 1em; width: 2em;
+    border: 2px solid var(--espresso);
+    background-color: var(--roast);
+    margin-top: -0.15em;
+    z-index: -1;
+  }
+  .base3 {
+    position: absolute;
+    height: 0.15em; width: 17.5em;
+    background-color: var(--espresso);
+    margin-top: 0.8em;
+  }
+  .text_404 {
+    position: absolute;
+    display: flex; flex-direction: row;
+    column-gap: 6em;
+    z-index: -5;
+    margin-bottom: 2em;
+    align-items: center; justify-content: center;
+    opacity: 0.06;
+    font-family: 'Playfair Display', serif;
+    color: var(--caramel);
+  }
+  .text_4041,.text_4042,.text_4043 { transform: scaleY(24.5) scaleX(9); }
+
+  /* ── REVIEWS CAROUSEL ── */
+  #reviews {
+    background: var(--espresso);
+    padding: 7rem 4rem;
+    overflow: hidden;
+  }
+  #reviews .section-title { color: var(--cream); }
+  #reviews .section-label { color: var(--latte); }
+  .carousel-outer { position: relative; overflow: hidden; }
+  .carousel-track {
+    display: flex;
+    gap: 2rem;
+    transition: transform 0.5s cubic-bezier(0.25,0.8,0.25,1);
+    will-change: transform;
+  }
+
+  /* ── PIXAR CARDS (coffee palette) ── */
+  .card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    width: calc(33.333% - 1.4rem);
+    min-width: 260px;
+    padding: 1rem 0;
+  }
+  .pixar-card {
+    --ui-blue: #c87941;
+    --ui-blue-shadow: #8b5520;
+    --ui-green: #5c8c5a;
+    --ui-green-shadow: #3d6b3b;
+    --ui-red: #a0522d;
+    --ui-red-shadow: #7a3f22;
+    --ui-cream: #f5ede3;
+    --ui-cream-shadow: #c7b8ab;
+    --ui-dark: #1a0f0a;
+    --button-press-depth: 0.15em;
+    position: relative;
+    width: 100%;
+    max-width: 320px;
+    background-color: var(--ui-cream);
+    border-radius: 1.5em;
+    padding: 1.2em;
+    border: 0.2em solid var(--ui-dark);
+    box-shadow: 0.5em 0.5em 0 var(--ui-dark);
+    display: flex; flex-direction: column;
+    transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.2s;
+  }
+  .pixar-card:hover {
+    transform: translateY(-0.5em) rotate(-2deg);
+    box-shadow: 0.8em 0.8em 0 var(--ui-dark);
+  }
+  .card-header { display: flex; align-items: center; margin-bottom: 1em; }
+  .card-avatar {
+    width: 3.2em; height: 3.2em;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--caramel), #e8a060);
+    border: 0.2em solid var(--ui-dark);
+    box-shadow: 0.2em 0.2em 0 var(--ui-dark);
+    flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3em;
+    transition: transform 0.3s;
+  }
+  .pixar-card:hover .card-avatar { transform: scale(1.08) rotate(5deg); }
+  .card-username {
+    margin: 0 0 0 0.8em;
+    font-size: 1em;
+    font-weight: 700;
+    color: var(--ui-dark);
+    font-family: 'Playfair Display', serif;
+  }
+  .card-image-area {
+    background-color: #ddd0c0;
+    border-radius: 1em;
+    padding: 0.8em;
+    border: 0.2em solid var(--ui-dark);
+    box-shadow: inset 0.2em 0.2em 0 #b8a898;
+  }
+  .card-image-placeholder {
+    width: 100%; height: 4em;
+    border-radius: 0.6em;
+    background: linear-gradient(135deg, var(--caramel), #e8a060);
+    border: 0.2em solid var(--ui-dark);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5em;
+    transition: transform 0.4s cubic-bezier(0.175,0.885,0.32,1.275);
+  }
+  .pixar-card:hover .card-image-placeholder { transform: scale(1.03); }
+  .card-caption {
+    margin: 0.8em 0 0 0;
+    font-size: 0.82em;
+    line-height: 1.5;
+    color: var(--ui-dark);
+    font-weight: 500;
+  }
+  .card-stars { color: var(--caramel); font-size: 0.85em; margin-top: 0.5em; }
+  .card-actions { display: flex; justify-content: space-around; margin-top: 1.2em; }
+  .action-button {
+    background: var(--ui-green);
+    border: 0.2em solid var(--ui-dark);
+    border-radius: 1em;
+    padding: 0.5em;
+    cursor: pointer;
+    box-shadow: 0 var(--button-press-depth) 0 var(--ui-green-shadow), 0 0.4em 0 var(--ui-dark);
+    transition: transform 0.1s, box-shadow 0.1s;
+  }
+  .action-button:active {
+    transform: translateY(var(--button-press-depth));
+    box-shadow: 0 0 0 var(--ui-green-shadow), 0 var(--button-press-depth) 0 var(--ui-dark);
+  }
+  .like-button {
+    background: var(--ui-red);
+    box-shadow: 0 var(--button-press-depth) 0 var(--ui-red-shadow), 0 0.4em 0 var(--ui-dark);
+  }
+  .like-button:active {
+    box-shadow: 0 0 0 var(--ui-red-shadow), 0 var(--button-press-depth) 0 var(--ui-dark);
+  }
+  .action-button-icon {
+    width: 1.6em; height: 1.6em;
+    stroke: var(--ui-dark);
+    stroke-width: 2.5;
+    fill: none;
+    stroke-linecap: round; stroke-linejoin: round;
+    display: block;
+  }
+  .carousel-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+  .carousel-btn {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    background: transparent;
+    border: 1px solid var(--caramel);
+    color: var(--caramel);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .carousel-btn:hover { background: var(--caramel); color: var(--espresso); }
+
+  /* ── SKILLS + COFFEE MACHINE ── */
+  #skills {
+    background: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5rem;
+    min-height: 100vh;
+  }
+  .skills-panel { flex: 1; max-width: 520px; }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .skill-category h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--caramel);
+    margin-bottom: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .skill-list { list-style: none; }
+  .skill-list li {
+    font-size: 0.78rem;
+    color: var(--text-mid);
+    padding: 0.22rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'DM Mono', monospace;
+    border-bottom: 1px solid rgba(200,121,65,0.1);
+  }
+  .skill-list li::before {
+    content: '▸';
+    color: var(--caramel);
+    font-size: 0.65rem;
+    flex-shrink: 0;
+  }
+  .coffee-machine-wrap {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* ── COFFEE MACHINE ── */
+  .coffee-machine-outer {
+    position: relative;
+    width: 300px;
+    height: 280px;
+  }
+  .coffee-header {
+    width: 100%; height: 80px;
+    position: absolute; top: 0; left: 0;
+    background-color: var(--steam);
+    border-radius: 10px;
+  }
+  .coffee-header__buttons {
+    width: 25px; height: 25px;
+    position: absolute; top: 25px;
+    background-color: var(--espresso);
+    border-radius: 50%;
+  }
+  .coffee-header__buttons::after {
+    content: "";
+    width: 8px; height: 8px;
+    position: absolute; bottom: -8px;
+    left: calc(50% - 4px);
+    background-color: var(--roast);
+  }
+  .coffee-header__button-one { left: 15px; }
+  .coffee-header__button-two { left: 50px; }
+  .coffee-header__display {
+    width: 50px; height: 50px;
+    position: absolute;
+    top: calc(50% - 25px);
+    left: calc(50% - 25px);
+    border-radius: 50%;
+    background-color: var(--caramel);
+    border: 5px solid var(--gold);
+    box-sizing: border-box;
+  }
+  .coffee-header__details {
+    width: 8px; height: 20px;
+    position: absolute; top: 10px; right: 10px;
+    background-color: var(--text-light);
+    box-shadow: -12px 0 0 var(--text-light), -24px 0 0 var(--text-light);
+  }
+  .coffee-medium {
+    width: 90%; height: 160px;
+    position: absolute; top: 80px;
+    left: calc(50% - 45%);
+    background-color: var(--latte);
+  }
+  .coffee-medium:before {
+    content: "";
+    width: 90%; height: 100px;
+    background-color: var(--roast);
+    position: absolute; bottom: 0;
+    left: calc(50% - 45%);
+    border-radius: 20px 20px 0 0;
+  }
+  .coffe-medium__exit {
+    width: 60px; height: 20px;
+    position: absolute; top: 0;
+    left: calc(50% - 30px);
+    background-color: var(--espresso);
+  }
+  .coffe-medium__exit::before {
+    content: "";
+    width: 50px; height: 20px;
+    border-radius: 0 0 50% 50%;
+    position: absolute; bottom: -20px;
+    left: calc(50% - 25px);
+    background-color: var(--espresso);
+  }
+  .coffe-medium__exit::after {
+    content: "";
+    width: 10px; height: 10px;
+    position: absolute; bottom: -30px;
+    left: calc(50% - 5px);
+    background-color: var(--espresso);
+  }
+  .coffee-medium__arm {
+    width: 70px; height: 20px;
+    position: absolute; top: 15px; right: 25px;
+    background-color: var(--espresso);
+  }
+  .coffee-medium__arm::before {
+    content: "";
+    width: 15px; height: 5px;
+    position: absolute; top: 7px; left: -15px;
+    background-color: var(--latte);
+  }
+  .coffee-medium__cup {
+    width: 80px; height: 47px;
+    position: absolute; bottom: 0;
+    left: calc(50% - 40px);
+    background-color: #fff;
+    border-radius: 0 0 70px 70px / 0 0 110px 110px;
+  }
+  .coffee-medium__cup::after {
+    content: "";
+    width: 20px; height: 20px;
+    position: absolute; top: 6px; right: -13px;
+    border: 5px solid #fff;
+    border-radius: 50%;
+  }
+  @keyframes liquid {
+    0% { height: 0; opacity: 1; }
+    5% { height: 0; opacity: 1; }
+    20% { height: 62px; opacity: 1; }
+    95% { height: 62px; opacity: 1; }
+    100% { height: 62px; opacity: 0; }
+  }
+  .coffee-medium__liquid {
+    width: 6px; height: 63px;
+    opacity: 0;
+    position: absolute; top: 50px;
+    left: calc(50% - 3px);
+    background-color: var(--latte);
+    animation: liquid 4s 4s linear infinite;
+  }
+  .coffee-medium__smoke {
+    width: 8px; height: 20px;
+    position: absolute;
+    border-radius: 5px;
+    background-color: var(--steam);
+  }
+  @keyframes smokeOne {
+    0% { bottom: 20px; opacity: 0; }
+    40% { bottom: 50px; opacity: 0.5; }
+    80% { bottom: 80px; opacity: 0.3; }
+    100% { bottom: 80px; opacity: 0; }
+  }
+  @keyframes smokeTwo {
+    0% { bottom: 40px; opacity: 0; }
+    40% { bottom: 70px; opacity: 0.5; }
+    80% { bottom: 80px; opacity: 0.3; }
+    100% { bottom: 80px; opacity: 0; }
+  }
+  .coffee-medium__smoke-one { opacity: 0; bottom: 50px; left: 102px; animation: smokeOne 3s 4s linear infinite; }
+  .coffee-medium__smoke-two { opacity: 0; bottom: 70px; left: 118px; animation: smokeTwo 3s 5s linear infinite; }
+  .coffee-medium__smoke-three { opacity: 0; bottom: 65px; right: 118px; animation: smokeTwo 3s 6s linear infinite; }
+  .coffee-medium__smoke-for { opacity: 0; bottom: 50px; right: 102px; animation: smokeOne 3s 5s linear infinite; }
+  .coffee-footer {
+    width: 95%; height: 15px;
+    position: absolute; bottom: 25px;
+    left: calc(50% - 47.5%);
+    background-color: var(--caramel);
+    border-radius: 10px;
+  }
+  .coffee-footer::after {
+    content: "";
+    width: 106%; height: 26px;
+    position: absolute; bottom: -25px; left: -8px;
+    background-color: var(--espresso);
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--espresso);
+    padding: 7rem 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  #contact .section-label { color: var(--latte); }
+  #contact .section-title { color: var(--cream); }
+  .contact-tagline {
+    color: var(--text-light);
+    max-width: 480px;
+    line-height: 1.8;
+    margin-bottom: 4rem;
+    font-size: 1rem;
+  }
+  .social-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+    justify-content: center;
+    max-width: 700px;
+    margin-bottom: 4rem;
+  }
+  .social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.85rem 1.5rem;
+    background: rgba(245,237,227,0.06);
+    border: 1px solid rgba(200,121,65,0.25);
+    border-radius: 4px;
+    color: var(--steam);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    transition: all 0.3s;
+    backdrop-filter: blur(10px);
+  }
+  .social-link:hover {
+    background: var(--caramel);
+    color: var(--espresso);
+    border-color: var(--caramel);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(200,121,65,0.3);
+  }
+  .social-link i { font-size: 1.1rem; width: 1.2rem; text-align: center; }
+  .contact-divider {
+    width: 60px;
+    height: 1px;
+    background: var(--caramel);
+    margin: 0 auto 2rem;
+    opacity: 0.4;
+  }
+  .contact-email {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.9rem;
+    color: var(--latte);
+    opacity: 0.7;
+  }
+  .footer-sig {
+    margin-top: 5rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 0.8rem;
+    color: rgba(245,237,227,0.25);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce {
+    0%,100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
+  }
+
+  /* responsive */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 2rem; }
+    .nav-links { gap: 1.5rem; }
+    section { padding: 5rem 2rem; }
+    #about, #skills { flex-direction: column; gap: 3rem; }
+    .about-tv-wrap, .coffee-machine-wrap { transform: scale(0.85); }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .card-container { width: calc(50% - 1rem); }
+  }
+  @media (max-width: 600px) {
+    .nav-links { display: none; }
+    .hero-title { font-size: 3rem; }
+    .card-container { width: 85%; }
+    #contact { padding: 5rem 2rem; }
+  }
+  /* @media only screen and (max-width: 1024px) { .screenM { display: flex; } .screen { display: none; } } */
+  /* @media only screen and (min-width: 1025px) { .screen { display: flex; } .screenM { display: none; } } */
+  .screenM {
+    width: 13em; height: 7.85em;
+    position: relative;
+    font-family: 'DM Mono', monospace;
+    background: linear-gradient(to right,var(--roast) 0%,#3d1f10 14%,#5c3d2e 14%,#4a2e1e 28%,var(--caramel) 28%,#b86c35 42%,#7a5c42 42%,#6a4c32 57%,var(--latte) 57%,#c4945e 71%,#5c3d2e 71%,#4a2e1e 85%,var(--cream) 85%,#f0e8de 100%);
+    border-radius: 10px;
+    border: 2px solid var(--espresso);
+    z-index: 99;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: bold;
+    color: var(--latte);
+    letter-spacing: 0.12em;
+    text-align: center;
+    overflow: hidden;
+  }
+  .screenM:before, .screenM:after {
+    content: ""; position: absolute;
+    left: 0; z-index: 1; width: 100%;
+  }
+  .screenM:before {
+    top: 0; height: 68%;
+    background: linear-gradient(to right,var(--cream) 0%,#f0e8de 14%,#c87941 14%,#b86c35 28%,var(--latte) 28%,#c4945e 42%,#5c8c5a 42%,#4a7a48 57%,#c87941 57%,#b86c35 71%,var(--roast) 71%,#321508 85%,#1a0f0a 85%,#0e0806 100%);
+  }
+  .screenM:after {
+    bottom: 0; height: 22%;
+    background: linear-gradient(to right,var(--roast) 0%,#2a1408 16%,var(--cream) 16%,#f0e8de 33%,#1a0f0a 33%,#0e0806 50%,#7a5c42 50%,#6a4c32 66%,#9e7b65 66%,#8e6b55 83%,#5c3d2e 83%,#4a2e1e 100%);
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo">Brew <span>&</span> Code</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">☕ Full-Stack Developer & Designer</p>
+    <h1 class="hero-title">Crafted with<br><em>patience,</em><br>served with code.</h1>
+    <p class="hero-sub">Just like a perfect espresso — every project is measured, timed, and pulled with intention.</p>
+    <a href="#about" class="hero-cta">Discover My Work</a>
+  </div>
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-text">
+    <p class="section-label">01 — About Me</p>
+    <h2 class="section-title">A developer<br>who brews ideas.</h2>
+    <div class="about-accent"></div>
+    <p>I'm a full-stack developer with a love for building beautiful, functional digital experiences. Like a barista perfecting their craft, I obsess over the details — clean architecture, elegant APIs, and interfaces that delight.</p>
+    <p>With 4+ years of experience across startups and agencies, I've shipped products that thousands of people use daily. My workspace smells like dark roast and freshly compiled code.</p>
+    <p>When I'm not writing code, you'll find me experimenting with pour-over techniques, contributing to open-source, or sketching UI concepts in my notebook.</p>
+  </div>
+
+  <div class="about-tv-wrap">
+    <div class="main_wrapper">
+      <div class="main">
+        <div class="antenna">
+          <div class="antenna_shadow"></div>
+          <div class="a1"></div>
+          <div class="a1d"></div>
+          <div class="a2"></div>
+          <div class="a2d"></div>
+        </div>
+        <div class="tv">
+          <div class="cruve">
+            <svg class="curve_svg" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 189.929 189.929" xml:space="preserve">
+              <path d="M70.343,70.343c-30.554,30.553-44.806,72.7-39.102,115.635l-29.738,3.951C-5.442,137.659,11.917,86.34,49.129,49.13C86.34,11.918,137.664-5.445,189.928,1.502l-3.95,29.738C143.041,25.54,100.895,39.789,70.343,70.343z"></path>
+            </svg>
+          </div>
+          <div class="display_div">
+            <div class="screen_out">
+              <div class="screen_out1">
+                <div class="screen"><span class="notfound_text">☕ BREWING…</span></div>
+                <!-- <div class="screenM"><span class="notfound_text">☕ BREWING…</span></div> -->
+              </div>
+            </div>
+          </div>
+          <div class="lines">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+          </div>
+          <div class="buttons_div">
+            <div class="b1"><div></div></div>
+            <div class="b2"></div>
+            <div class="speakers">
+              <div class="g1">
+                <div class="g11"></div>
+                <div class="g12"></div>
+                <div class="g13"></div>
+              </div>
+              <div class="g"></div>
+              <div class="g"></div>
+            </div>
+          </div>
+        </div>
+        <div class="bottom">
+          <div class="base1"></div>
+          <div class="base2"></div>
+          <div class="base3"></div>
+        </div>
+      </div>
+      <div class="text_404">
+        <div class="text_4041">4</div>
+        <div class="text_4042">0</div>
+        <div class="text_4043">4</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS CAROUSEL -->
+<section id="reviews">
+  <p class="section-label">02 — Client Reviews</p>
+  <h2 class="section-title" style="color:var(--cream)">What people<br>are saying.</h2>
+
+  <div class="carousel-outer" style="margin-top:3rem">
+    <div class="carousel-track" id="carouselTrack">
+
+      <div class="card-container">
+        <div class="pixar-card">
+          <div class="card-header">
+            <div class="card-avatar">☕</div>
+            <p class="card-username">Sarah Chen</p>
+          </div>
+          <div class="card-image-area">
+            <div class="card-image-placeholder">🚀</div>
+            <p class="card-caption">Delivered our dashboard ahead of schedule. The attention to UI detail was extraordinary — our users love the new interface!</p>
+          </div>
+          <div class="card-stars">★★★★★</div>
+          <div class="card-actions">
+            <button class="action-button like-button" aria-label="Like Post">
+              <svg class="action-button-icon" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+            </button>
+            <button class="action-button comment-button" aria-label="Comment">
+              <svg class="action-button-icon" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-container">
+        <div class="pixar-card">
+          <div class="card-header">
+            <div class="card-avatar">🌿</div>
+            <p class="card-username">Marcus B.</p>
+          </div>
+          <div class="card-image-area">
+            <div class="card-image-placeholder">💡</div>
+            <p class="card-caption">Turned our messy codebase into a clean, scalable architecture. Like watching a magician work — pure coffee-fueled brilliance.</p>
+          </div>
+          <div class="card-stars">★★★★★</div>
+          <div class="card-actions">
+            <button class="action-button like-button" aria-label="Like Post">
+              <svg class="action-button-icon" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+            </button>
+            <button class="action-button comment-button" aria-label="Comment">
+              <svg class="action-button-icon" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-container">
+        <div class="pixar-card">
+          <div class="card-header">
+            <div class="card-avatar">🍂</div>
+            <p class="card-username">Priya K.</p>
+          </div>
+          <div class="card-image-area">
+            <div class="card-image-placeholder">🎨</div>
+            <p class="card-caption">The redesign exceeded every expectation. Conversion rates up 40%. Communicative, fast, and deeply skilled in design systems.</p>
+          </div>
+          <div class="card-stars">★★★★★</div>
+          <div class="card-actions">
+            <button class="action-button like-button" aria-label="Like Post">
+              <svg class="action-button-icon" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+            </button>
+            <button class="action-button comment-button" aria-label="Comment">
+              <svg class="action-button-icon" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-container">
+        <div class="pixar-card">
+          <div class="card-header">
+            <div class="card-avatar">⚡</div>
+            <p class="card-username">James R.</p>
+          </div>
+          <div class="card-image-area">
+            <div class="card-image-placeholder">📱</div>
+            <p class="card-caption">Built our mobile app from scratch in 6 weeks. Performance is flawless, and the UX feels like it was crafted with a lot of love.</p>
+          </div>
+          <div class="card-stars">★★★★★</div>
+          <div class="card-actions">
+            <button class="action-button like-button" aria-label="Like Post">
+              <svg class="action-button-icon" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+            </button>
+            <button class="action-button comment-button" aria-label="Comment">
+              <svg class="action-button-icon" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-container">
+        <div class="pixar-card">
+          <div class="card-header">
+            <div class="card-avatar">🌙</div>
+            <p class="card-username">Lena M.</p>
+          </div>
+          <div class="card-image-area">
+            <div class="card-image-placeholder">🔧</div>
+            <p class="card-caption">Fixed years of technical debt in one sprint. The code is so clean now I barely recognize our own product. Absolutely worth it.</p>
+          </div>
+          <div class="card-stars">★★★★★</div>
+          <div class="card-actions">
+            <button class="action-button like-button" aria-label="Like Post">
+              <svg class="action-button-icon" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+            </button>
+            <button class="action-button comment-button" aria-label="Comment">
+              <svg class="action-button-icon" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="carousel-controls">
+    <button class="carousel-btn" id="prevBtn"><i class="fa fa-chevron-left"></i></button>
+    <button class="carousel-btn" id="nextBtn"><i class="fa fa-chevron-right"></i></button>
+  </div>
+</section>
+
+<!-- SKILLS + COFFEE MACHINE -->
+<section id="skills">
+  <div class="skills-panel">
+    <p class="section-label">03 — Skills</p>
+    <h2 class="section-title">The ingredients<br>in my cup.</h2>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h4><i class="fa fa-code"></i> Frontend</h4>
+        <ul class="skill-list">
+          <li>React / Next.js</li>
+          <li>TypeScript</li>
+          <li>Tailwind CSS</li>
+          <li>Framer Motion</li>
+          <li>Vue.js</li>
+          <li>HTML5 / CSS3</li>
+          <li>Vite / Webpack</li>
+        </ul>
+      </div>
+      <div class="skill-category">
+        <h4><i class="fa fa-server"></i> Backend</h4>
+        <ul class="skill-list">
+          <li>Node.js / Express</li>
+          <li>Python / FastAPI</li>
+          <li>PostgreSQL</li>
+          <li>MongoDB</li>
+          <li>Redis</li>
+          <li>GraphQL</li>
+          <li>REST APIs</li>
+        </ul>
+      </div>
+      <div class="skill-category">
+        <h4><i class="fa fa-cloud"></i> DevOps</h4>
+        <ul class="skill-list">
+          <li>Docker / K8s</li>
+          <li>AWS / GCP</li>
+          <li>CI/CD Pipelines</li>
+          <li>GitHub Actions</li>
+          <li>Nginx</li>
+          <li>Terraform</li>
+        </ul>
+      </div>
+      <div class="skill-category">
+        <h4><i class="fa fa-palette"></i> Design</h4>
+        <ul class="skill-list">
+          <li>Figma</li>
+          <li>Design Systems</li>
+          <li>Prototyping</li>
+          <li>UX Research</li>
+          <li>Accessibility</li>
+          <li>Motion Design</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="coffee-machine-wrap">
+    <div class="coffee-machine-outer">
+      <div class="coffee-header">
+        <div class="coffee-header__buttons coffee-header__button-one"></div>
+        <div class="coffee-header__buttons coffee-header__button-two"></div>
+        <div class="coffee-header__display"></div>
+        <div class="coffee-header__details"></div>
+      </div>
+      <div class="coffee-medium">
+        <div class="coffe-medium__exit"></div>
+        <div class="coffee-medium__arm"></div>
+        <div class="coffee-medium__liquid"></div>
+        <div class="coffee-medium__smoke coffee-medium__smoke-one"></div>
+        <div class="coffee-medium__smoke coffee-medium__smoke-two"></div>
+        <div class="coffee-medium__smoke coffee-medium__smoke-three"></div>
+        <div class="coffee-medium__smoke coffee-medium__smoke-for"></div>
+        <div class="coffee-medium__cup"></div>
+      </div>
+      <div class="coffee-footer"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label">04 — Contact</p>
+  <h2 class="section-title">Let's brew<br>something together.</h2>
+  <p class="contact-tagline">Whether it's a quick espresso chat or a full-course project, I'm always up for a conversation about great ideas.</p>
+
+  <div class="social-grid">
+    <a class="social-link" href="https://github.com" target="_blank" rel="noopener">
+      <i class="fab fa-github"></i> GitHub
+    </a>
+    <a class="social-link" href="https://linkedin.com" target="_blank" rel="noopener">
+      <i class="fab fa-linkedin"></i> LinkedIn
+    </a>
+    <a class="social-link" href="https://medium.com" target="_blank" rel="noopener">
+      <i class="fab fa-medium"></i> Medium
+    </a>
+    <a class="social-link" href="https://twitter.com" target="_blank" rel="noopener">
+      <i class="fab fa-x-twitter"></i> X / Twitter
+    </a>
+    <a class="social-link" href="https://dribbble.com" target="_blank" rel="noopener">
+      <i class="fab fa-dribbble"></i> Dribbble
+    </a>
+    <a class="social-link" href="https://dev.to" target="_blank" rel="noopener">
+      <i class="fab fa-dev"></i> Dev.to
+    </a>
+    <a class="social-link" href="https://codepen.io" target="_blank" rel="noopener">
+      <i class="fab fa-codepen"></i> CodePen
+    </a>
+    <a class="social-link" href="https://youtube.com" target="_blank" rel="noopener">
+      <i class="fab fa-youtube"></i> YouTube
+    </a>
+    <a class="social-link" href="mailto:hello@brewandcode.dev">
+      <i class="fas fa-envelope"></i> Email Me
+    </a>
+  </div>
+
+  <div class="contact-divider"></div>
+  <p class="contact-email">hello@brewandcode.dev</p>
+  <p class="footer-sig" style="margin-top:4rem;">Brew & Code · Crafted with ☕ & care · 2025</p>
+</section>
+
+<script>
+  // Carousel
+  const track = document.getElementById('carouselTrack');
+  const cards = track.querySelectorAll('.card-container');
+  let current = 0;
+
+  function getVisible() {
+    return window.innerWidth < 600 ? 1 : window.innerWidth < 900 ? 2 : 3;
+  }
+
+  function slide(dir) {
+    const visible = getVisible();
+    const max = cards.length - visible;
+    current = Math.max(0, Math.min(current + dir, max));
+    const cardW = cards[0].offsetWidth + 32;
+    track.style.transform = `translateX(-${current * cardW}px)`;
+  }
+
+  document.getElementById('prevBtn').addEventListener('click', () => slide(-1));
+  document.getElementById('nextBtn').addEventListener('click', () => slide(1));
+
+  // Auto-advance
+  setInterval(() => {
+    const visible = getVisible();
+    const max = cards.length - visible;
+    if (current >= max) current = -1;
+    slide(1);
+  }, 4000);
+</script>
+</body>
+</html>
